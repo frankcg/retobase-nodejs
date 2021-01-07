@@ -41,6 +41,9 @@ _server.get('/retoibm/sumar/:sumando01/:sumando02', function(request, response) 
   }
 });
 
+_server.get('/', function (req, res, next) {
+  res.json({status: 'UP'});
+});
 
 _server.listen(_port, () => {
    console.log(`Server listening at ${_port}`);
