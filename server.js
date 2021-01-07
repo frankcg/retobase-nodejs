@@ -23,20 +23,17 @@ _server.get('/retoibm/sumar/:sumando01/:sumando02', function(request, response) 
     }else{
       return response.status(400).json({resultado : "Bad Request"});
     }
+
+    con.connect(function(err) {  
+    if (err) throw err;  
+      console.log("Connected!");  
+      var sql = "INSERT INTO retoIBM.retoTecnico(sumando01, sumando02, resultado)VALUES ('_sumando01', '_sumando02', '_resultado');";  
     
-    con.connect(function(err) {
-      if (err) throw err;
-        var sql = "INSERT INTO retoIBM.retoTecnico
-              (sumado01
-               , sumado02
-               , resultado)
-          VALUES ('_sumando01'
-                  , '_sumando02'
-                  , '_resultado');";
-      con.query(sql, function (err, result) {
-      if (err) throw err;
-      });
-    });    
+      con.query(sql, function (err, result) {  
+      if (err) throw err;  
+      console.log("1 record inserted");  
+      });  
+    });
     
   }
   catch(e){
